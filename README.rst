@@ -27,3 +27,10 @@ v0.03
     * add a new model Step that has a many-to-one relationship with Course
     * register Step as inlines of Course in Admin
     * to see: http://localhost:8000/admin/courses/course/
+
+
+v0.04
+=====
+
+    * add url to course list page
+    * add course list page (template + view)
