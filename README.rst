@@ -20,3 +20,10 @@ v0.02
     * add a hello world page: http://127.0.0.1:8000/hello/
     * add a new welcome page: http://127.0.0.1:8000/
     * add base template file, css file
+
+v0.03
+=====
+
+    * add a new model Step that has a many-to-one relationship with Course
+    * register Step as inlines of Course in Admin
+    * to see: http://localhost:8000/admin/courses/course/

@@ -1,5 +1,13 @@
 from django.contrib import admin
-from .models import Course
+from .models import Course, Step
 
 
-admin.site.register(Course)
+class StepInline(admin.StackedInline):
+    model = Step
+
+@admin.register(Course)
+class CourseAdmin(admin.ModelAdmin):
+    inlines = [StepInline]
+
+
+admin.site.register(Step)
