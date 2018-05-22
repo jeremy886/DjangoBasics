@@ -7,4 +7,8 @@ class CourseListView(ListView):
     model = Course
 
 
+class CourseDetailView(DetailView):
+    model = Course
+
+
 

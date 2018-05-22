@@ -34,3 +34,9 @@ v0.04
 
     * add url to course list page
     * add course list page (template + view)
+
+v0.05
+=====
+
+    * add detail course page and url
+    * make course list clickable

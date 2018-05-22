@@ -1,0 +1,10 @@
+<article>
+    <h2>{{ course.title }}</h2>
+    {{ course.description }}
+    <section>
+        {% for step in course.step_set.all %}
+        <h3>{{ step.title }}</h3>
+        {{ step.description }}
+        {% endfor %}
+    </section>
+</article>
