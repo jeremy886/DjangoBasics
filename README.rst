@@ -6,6 +6,7 @@ Intro:
 v0.01
 =====
 
+    * superuser: jeremy password: AiFee2oo
     * start an app (courses)
     * add home view
 
@@ -38,5 +39,10 @@ v0.04
 v0.05
 =====
 
-    * add detail course page and url
-    * make course list clickable
+    * make course list clickable: http://localhost:8000/courses/
+    * * add detail course page and url: http://localhost:8000/courses/courses/3/
+
+v0.06
+=====
+
+    * ordering Course's Step

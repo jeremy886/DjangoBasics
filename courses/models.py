@@ -6,6 +6,7 @@ class Course(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
 
+
     def __str__(self):
         return self.title
 
@@ -18,3 +19,6 @@ class Step(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ["order"]
