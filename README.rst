@@ -46,3 +46,10 @@ v0.06
 =====
 
     * ordering Course's Step
+
+v0.07
+=====
+
+    * You don't need a use get_object_or_404(User, username="ken") like a function view.
+    * use template filter "title" for Step's title
+
