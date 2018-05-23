@@ -60,3 +60,9 @@ v0.08
     * python manage.py makemigrations courses && python manage.py migrate courses
     * add Content detail view, add the view to urlpatterns
     * apply linebreaks to content detail template
+
+v0.09
+
+    * add many links to all templates to enable better navigation
+    * now you can visit every page by http://localhost:8000/
+    * use app_name to add namespace to url tag

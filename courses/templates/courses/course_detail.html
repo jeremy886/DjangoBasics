@@ -1,10 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
 <article>
     <h2>{{ course.title }}</h2>
     {{ course.description }}
     <section>
         {% for step in course.step_set.all %}
-        <h3>{{ step.title|title }}</h3>
+            <h3><a href="{% url "courses:step" course_pk=step.course.pk step_pk=step.pk %}">{{ step.title|title }}</a></h3>
         {{ step.description }}
         {% endfor %}
     </section>
 </article>
+{% endblock %}

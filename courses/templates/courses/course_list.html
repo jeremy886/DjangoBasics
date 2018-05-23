@@ -1,6 +1,13 @@
+{% extends "layout.html" %}
 
+{% block title %}
+    Available Courses
+{% endblock %}
+
+{% block content %}
 <ul>
 {% for course in object_list %}
-    <li><a href="{% url "detail" pk=course.pk %}">{{ course.title }}</a></li>
+    <li><a href="{% url "courses:detail" pk=course.pk %}">{{ course.title }}</a></li>
 {% endfor %}
 </ul>
+{% endblock %}

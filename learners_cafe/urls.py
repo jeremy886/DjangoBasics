@@ -22,7 +22,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("hello/", HelloView.as_view(), name="hello"),
     path("", HomeView.as_view(), name="home"),
-    path("courses/", include("courses.urls"))
+    path("courses/", include("courses.urls")),
 ]
 
 
