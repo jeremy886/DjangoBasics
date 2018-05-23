@@ -53,3 +53,10 @@ v0.07
     * You don't need a use get_object_or_404(User, username="ken") like a function view.
     * use template filter "title" for Step's title
 
+v0.08
+=====
+
+    * add Content to Step model and allow this field to be blank and with a default value ""
+    * python manage.py makemigrations courses && python manage.py migrate courses
+    * add Content detail view, add the view to urlpatterns
+    * apply linebreaks to content detail template
