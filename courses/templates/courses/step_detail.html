@@ -2,10 +2,10 @@
 
 {% block content %}
 <article>
-    <h2><a href="{% url "courses:detail" pk=step.course_id %}">{{ step.title }}</a></h2>
-    {{ step.description|linebreaks }}
+    <h2><a href="{% url "courses:detail" pk=object.course_id %}">{{ object.title }}</a></h2>
+    {{ object.description|linebreaks }}
     <section>
-        {{ step.content|linebreaks }}
+        {{ object.content|linebreaks }}
     </section>
 </article>
 {% endblock %}
