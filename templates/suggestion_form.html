@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}New Ideas{% endblock %}
+
+{% block content %}
+<h1>We want to hear your suggestions!</h1>
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Send" />
+</form>
+{% endblock %}
