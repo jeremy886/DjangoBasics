@@ -33,3 +33,9 @@ try
 ---
 
     * http://127.0.0.1:8000/suggestion/
+
+
+v.0.11.1
+========
+
+    * improve: use reverse_lazy() for success_url in the SuggestionFormView

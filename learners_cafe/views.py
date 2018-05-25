@@ -1,5 +1,6 @@
 from django.views import View
 from django.views.generic import TemplateView, FormView
+from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.contrib import messages
@@ -19,7 +20,7 @@ class HomeView(TemplateView):
 class SuggestionFormView(FormView):
     form_class = forms.SuggestionForm
     template_name = "suggestion_form.html"
-    success_url = "/suggestion"
+    success_url = reverse_lazy("suggestion")
 
     def form_valid(self, form):
         msg = form.cleaned_data
