@@ -52,7 +52,7 @@ New Models
     * be careful about migration: (add Reading here)
         1. add abstract = True to class Meta
         2. comment out Step related code in admin.py
-        3. python manage.py make migrations courses / python manage.py make migrate courses
+        3. python manage.py makemigrations courses / python manage.py make migrate courses
         4. go back to admin.py and change Step to Reading
         5. manually migrate tables (Step to Reading)
 
@@ -79,9 +79,29 @@ New Models
         3. change reverse url lookup in the template to step.get_absolute_url
         4. add template_name = "courses/step_detail.html" to TextDetailView and QuizDetailView
 
-Models:
+Models
+------
 
     - Course
         - Text(Step)
         - Quiz(Step)
 
+
+v0.13
+=====
+
+    * correct Quiz field total_choices to total_questions
+    * create Question class, python manage.py makemigrations courses
+    * create Answer class, python manage.py makemigrations courses && python manage.py migrate courses
+    * same process for adding MultipleChoiceQuestion and TrueFalseQuestion
+
+Models
+------
+
+    - Course
+        - Text(Step)
+        - Quiz(Step)
+        - Question
+            - MultipleChoiceQuestion
+            - TrueFalseQuestion
+            - Answer
