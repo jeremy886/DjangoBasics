@@ -35,7 +35,53 @@ try
     * http://127.0.0.1:8000/suggestion/
 
 
-v.0.11.1
+v0.11.1
 ========
 
     * improve: use reverse_lazy() for success_url in the SuggestionFormView
+
+
+v0.12
+=====
+
+New Models
+----------
+
+    * change Step into an abstract model
+    * create two child models of Step: Reading and Quiz
+    * be careful about migration: (add Reading here)
+        1. add abstract = True to class Meta
+        2. comment out Step related code in admin.py
+        3. python manage.py make migrations courses / python manage.py make migrate courses
+        4. go back to admin.py and change Step to Reading
+        5. manually migrate tables (Step to Reading)
+
+    * add Quiz and add it to Admin
+        1. same steps as above but we don't need to run the SQL command.
+        2. fix Admin: verbose_name_plural = "Quizzes"
+
+    * show both Text and Quiz inside a course
+        1. use get_context_data()
+        2. adjust the templates
+
+    * change the name of Reading to Text
+        1. rename the model to Text in models.py
+        2. comment out related code in admin.py
+        3. python manage.py make migrations courses
+            Did you rename the courses.Reading model to Text? [y/N] y
+        4. python manage.py make migrate courses
+        5. change Reading to Text in admin.py and uncomment the code
+        6. fix CourseDetailView in views.py (change reading_set to text_set)
+
+    * show steps: Text and Quiz
+        1. add two views in urlpatterns (text and quiz)
+        2. add get_absolute_url() to Text and Quiz Model
+        3. change reverse url lookup in the template to step.get_absolute_url
+        4. add template_name = "courses/step_detail.html" to TextDetailView and QuizDetailView
+
+Models:
+
+    - Course
+        - Text(Step)
+        - Quiz(Step)
+

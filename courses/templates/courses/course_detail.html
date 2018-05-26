@@ -5,8 +5,8 @@
     <h2>{{ course.title }}</h2>
     {{ course.description }}
     <section>
-        {% for step in course.step_set.all %}
-            <h3><a href="{% url "courses:step" course_pk=step.course.pk step_pk=step.pk %}">{{ step.title|title }}</a></h3>
+        {% for step in steps %}
+            <h3><a href="{{ step.get_absolute_url }}">{{ step.title|title }}</a></h3>
         {{ step.description }}
         {% endfor %}
     </section>
