@@ -105,3 +105,11 @@ Models
             - MultipleChoiceQuestion
             - TrueFalseQuestion
             - Answer
+
+
+v0.14
+=====
+
+    * Add ModelForm QuizForm, MultipleChoiceQuestionForm, TrueFalseQuestionForm in forms.py
+    * Add Material from materializecss.com
+    * Add QuizCreateView and modify related urlpatterns, templates

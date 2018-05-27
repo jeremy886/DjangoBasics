@@ -15,4 +15,5 @@ urlpatterns = [
     # ),
     path("<int:course_pk>/t<int:step_pk>/", views.TextDetailView.as_view(), name="text"),
     path("<int:course_pk>/q<int:step_pk>/", views.QuizDetailView.as_view(), name="quiz"),
+    path("<int:course_pk>/create_quiz/", views.QuizCreateView.as_view(), name="create_quiz"),
 ]
