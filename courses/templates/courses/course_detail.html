@@ -1,23 +1,29 @@
 {% extends "layout.html" %}
 
+{% block title %}
+    Courses Details
+{% endblock %}
+
 {% block content %}
-<article>
-    <h2>{{ course.title }}</h2>
+    <div class="collection">
+
+    <h3><div class="collection-header">{{ course.title }}</div></h3>
     {{ course.description }}
-    <section>
-        {% for step in steps %}
-            <h3><a href="{{ step.get_absolute_url }}">{{ step.title|title }}</a></h3>
-        {{ step.description }}
-        {% endfor %}
-    </section>
-</article>
-{% if user.is_authenticated %}
+
+    {% for step in steps %}
+        <h4>
+        <a class="collection-item" href="{{ step.get_absolute_url }}">{{ step.title|title }}</a>
+        </h4>
+        <p>{{ step.description }}</p>
+    {% endfor %}
+    </div>
+
+    {% if user.is_authenticated %}
     <hr>
     <a href="{% url 'courses:create_quiz' course_pk=course.id %}"
-       class="waves-effect waves-light btn-large">
-        <i class="material-icons left">add</i>
-        new quiz</a>
-
-{% endif %}
+    class="waves-effect waves-light btn">
+    <i class="material-icons left">add</i>
+    new quiz</a>
+    {% endif %}
 
 {% endblock content %}

@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-<ul>
-{% for course in object_list %}
-    <li><a href="{% url "courses:detail" pk=course.pk %}">{{ course.title }}</a></li>
-{% endfor %}
-</ul>
+    <div class="collection">
+    {% for course in object_list %}
+        <a class="collection-item" href="{% url "courses:detail" pk=course.pk %}">{{ course.title }}</a>
+    {% endfor %}
+    </div>
 {% endblock %}

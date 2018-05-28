@@ -1,0 +1,17 @@
+{% extends "courses/layout.html" %}
+
+{% block title %}{{ form.instance.title|default:"New Quiz" }} | {{ course.title }} | {{ block.super }}{% endblock %}
+
+{% block content %}
+
+    <h3>a href="{% url 'courses:detail' pk=object.course.id %}">{{ object.course.title }}</a></h3>
+    <h4>{{ form.instance.title|default:"Make a new quiz" }} </h4>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn waves-effect waves-light" type="submit" name="action">Save
+            <i class="material-icons right">save</i>
+        </button>
+    </form>
+
+{% endblock content %}

@@ -2,12 +2,10 @@
 
 {% block title %}New Quiz | {{ course.title }} | {{ block.super }}{% endblock %}
 
-{% block breadcrumb %}
-    <a href="{% url 'courses:detail' pk=course.id %}" class="breadcrumb">{{ course.title }}</a>
-{% endblock breadcrumb %}
-
 {% block content %}
-    <h1>Make a new quiz</h1>
+
+    <h3><a href="{% url 'courses:detail' pk=course.id %}">{{ course.title }}</a></h3>
+    <h4>Make a new quiz</h4>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
@@ -15,4 +13,5 @@
             <i class="material-icons right">save</i>
         </button>
     </form>
+
 {% endblock content %}

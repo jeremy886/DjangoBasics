@@ -1,7 +1,9 @@
 from itertools import chain
 
-from django.views.generic import ListView, DetailView, CreateView
-from django.contrib import messages
+from django.views.generic import (
+    ListView, DetailView, CreateView, UpdateView,
+)
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -48,7 +50,7 @@ class TextDetailView(DetailView):
     slug_field = "course"
     slug_url_kwarg = "course_pk"
     pk_url_kwarg = "step_pk"
-    template_name = "courses/step_detail.html"
+    template_name = "courses/text_detail.html"
 
 
 class QuizDetailView(DetailView):
@@ -58,13 +60,16 @@ class QuizDetailView(DetailView):
     slug_field = "course"
     slug_url_kwarg = "course_pk"
     pk_url_kwarg = "step_pk"
-    template_name = "courses/step_detail.html"
+    template_name = "courses/quiz_detail.html"
+    # # once you define context_object_name "quiz", quiz_detail.html matches the default
+    # # template name, so you don't need it anymore.
+    # template_name = "courses/quiz_detail.html"
 
 
 class QuizCreateView(LoginRequiredMixin, CreateView):
-
     form_class = forms.QuizForm
-    template_name = "courses/quiz_form.html"
+    template_name = "courses/quiz_create.html"
+    success_message = "%(title)s was created successfully"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -77,10 +82,24 @@ class QuizCreateView(LoginRequiredMixin, CreateView):
         quiz_form = form.save(commit=False)
         quiz_form.course = get_object_or_404(models.Course, id=course_pk)
         quiz_form.save()
-        # More: show message "Quiz added!"
+        # find a way to add "Successfully added!" message
         return super().form_valid(quiz_form)
 
     def get_success_url(self):
         course_pk = self.kwargs["course_pk"]
         return reverse_lazy('courses:detail', kwargs={'pk': course_pk})
         # More: how to get the quiz id from the above quiz form
+
+
+class QuizEditView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    query_pk_and_slug = True
+    slug_field = "course"
+    slug_url_kwarg = "course_pk"
+    pk_url_kwarg = "quiz_pk"
+    model = models.Quiz
+    form_class = forms.QuizForm
+    success_message = "%(title)s was updated successfully"
+    template_name = "courses/quiz_edit.html"
+
+class TextEditView(LoginRequiredMixin, UpdateView):
+    """To be added"""

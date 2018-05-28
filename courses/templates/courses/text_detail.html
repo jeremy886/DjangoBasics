@@ -1,0 +1,8 @@
+{% extends "courses/step_detail.html" %}
+
+{% block step %}
+            <a href="{% url 'courses:edit_text' course_pk=object.course_id text_pk=object.id %}"
+               class="waves-effect waves-light btn">
+            <i class="material-icons left">edit</i>
+                Edit</a>
+{% endblock %}

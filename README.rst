@@ -113,3 +113,8 @@ v0.14
     * Add ModelForm QuizForm, MultipleChoiceQuestionForm, TrueFalseQuestionForm in forms.py
     * Add Material from materializecss.com
     * Add QuizCreateView and modify related urlpatterns, templates
+
+v0.15
+=====
+
+    * Add QuizEditView and related urlpatterns and template
