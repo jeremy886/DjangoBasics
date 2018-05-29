@@ -107,3 +107,5 @@ class TextEditView(LoginRequiredMixin, UpdateView):
     """To be added"""
 
 
+class QuestionCreateView(LoginRequiredMixin, CreateView):
+    pass

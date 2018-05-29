@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 
 from . import views
 
@@ -12,4 +12,6 @@ urlpatterns = [
     path("<int:course_pk>/create_quiz/", views.QuizCreateView.as_view(), name="create_quiz"),
     path("<int:course_pk>/edit_quiz/<int:quiz_pk>/", views.QuizEditView.as_view(), name="edit_quiz"),
     path("<int:course_pk>/edit_text/<int:text_pk>/", views.TextEditView.as_view(), name="edit_text"),
+    re_path(r"(?P<quiz_pk>\d+)/create_question/(?P<question_type>mc|tf)/$",
+            views.QuestionCreateView.as_view(), name="create_question"),
 ]
