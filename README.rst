@@ -124,5 +124,8 @@ v0.16
 =====
 
     * remove Materialize CSS (prepare for CSS grid)
-    * fix QuizCreateView form_valid and make SuccessMessageMixin working
 
+v0.17
+=====
+
+    * fix QuizCreateView form_valid and make SuccessMessageMixin working
