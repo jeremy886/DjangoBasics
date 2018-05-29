@@ -118,3 +118,10 @@ v0.15
 =====
 
     * Add QuizEditView and related urlpatterns and template
+
+
+v0.16
+=====
+
+    * remove Materialize CSS (prepare for CSS grid)
+

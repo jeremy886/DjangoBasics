@@ -66,22 +66,26 @@ class QuizDetailView(DetailView):
     # template_name = "courses/quiz_detail.html"
 
 
+# class QuizCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class QuizCreateView(LoginRequiredMixin, CreateView):
+    model = "course"
+    pk_url_kwarg = "course_pk"
+    context_object_name = 'course'
     form_class = forms.QuizForm
     template_name = "courses/quiz_create.html"
     success_message = "%(title)s was created successfully"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        course = get_object_or_404(models.Course, id=self.kwargs["course_pk"])
+        course_pk = self.kwargs.get(self.pk_url_kwarg)
+        course = get_object_or_404(models.Course, pk=course_pk)
         context["course"] = course
         return context
 
     def form_valid(self, form):
-        course_pk = self.kwargs["course_pk"]
+        course_pk = self.kwargs.get(self.pk_url_kwarg)
         quiz_form = form.save(commit=False)
-        quiz_form.course = get_object_or_404(models.Course, id=course_pk)
-        quiz_form.save()
+        quiz_form.course = get_object_or_404(models.Course, pk=course_pk)
         # find a way to add "Successfully added!" message
         return super().form_valid(quiz_form)
 
