@@ -4,11 +4,12 @@
 
 {% block content %}
     <h2><a href="{% url "courses:detail" pk=object.course_id %}">{{ object.course.title }}</a></h2>
-    <h2>{{ object.title }}</h2>
+    <h3>{{ object.title }}</h3>
     {{ object.description|linebreaks }}
         {{ object.content|linebreaks }}
 
-
+    {% block question %}
+    {% endblock %}
     {% if user.is_authenticated %}
         <hr>
         {% block step %}{% endblock %}

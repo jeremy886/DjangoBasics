@@ -5,18 +5,21 @@
 {% endblock %}
 
 {% block content %}
-    <div class="collection">
+    <ul class="collection with-header">
 
-    <h3><div class="collection-header">{{ course.title }}</div></h3>
-    {{ course.description }}
+    <li class="collection-header"><h4>{{ course.title }}</h4>
+        {{ course.description }}
+    </li>
 
     {% for step in steps %}
-        <h4>
-        <a class="collection-item" href="{{ step.get_absolute_url }}">{{ step.title|title }}</a>
-        </h4>
-        <p>{{ step.description }}</p>
+        <li class="collection-item">
+        <h5><a href="{{ step.get_absolute_url }}">{{ step.title|title }}</a></h5>
+        {{ step.description }}
+        </li>
     {% endfor %}
-    </div>
+
+
+    </ul>
 
     {% if user.is_authenticated %}
     <hr>

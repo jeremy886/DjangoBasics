@@ -135,3 +135,13 @@ v0.18
 =====
 
     * restore Materialize CSS
+
+v0.19
+=====
+
+    * create two paths in urls.py for two Question types to use CreateView more easily
+
+v0.20
+
+    * customize a form html output in question_edit.html to enable Material CSS checkbox
+    * add create view and edit view for multiple-choice and true-false questions

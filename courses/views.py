@@ -107,5 +107,52 @@ class TextEditView(LoginRequiredMixin, UpdateView):
     """To be added"""
 
 
-class QuestionCreateView(LoginRequiredMixin, CreateView):
-    pass
+class QuestionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    """
+    deal with both multiple choice questiona and true/false questions,
+    from re_path patterns in one view.
+    """
+    pk_url_kwarg = "quiz_pk"
+    success_message = "%(prompt)s was created successfully"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        quiz_pk = self.kwargs.get(self.pk_url_kwarg)
+        quiz = get_object_or_404(models.Quiz, pk=quiz_pk)
+        context["quiz"] = quiz
+        return context
+
+    def form_valid(self, form):
+        quiz_pk = self.kwargs.get(self.pk_url_kwarg)
+        form.instance.quiz = get_object_or_404(models.Quiz, pk=quiz_pk)
+        return super().form_valid(form)
+
+
+class MCQuestionCreateView(QuestionCreateView):
+    form_class = forms.MultipleChoiceQuestionForm
+    template_name = "courses/question_form.html"
+
+
+class TFQuestionCreateView(QuestionCreateView):
+    form_class = forms.TrueFalseQuestionForm
+    template_name = "courses/question_form.html"
+
+
+class QuestionEditView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    query_pk_and_slug = True
+    slug_field = "quiz"
+    slug_url_kwarg = "quiz_pk"
+    pk_url_kwarg = "question_pk"
+    success_message = "%(prompt)s was updated successfully"
+    template_name = "courses/question_edit.html"
+
+
+class MCQuestionEditView(QuestionEditView):
+    model = models.MultipleChoiceQuestion
+    form_class = forms.MultipleChoiceQuestionForm
+
+
+class TFQuestionEditView(QuestionEditView):
+    model = models.TrueFalseQuestion
+    form_class = forms.TrueFalseQuestionForm
+

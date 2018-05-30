@@ -1,0 +1,42 @@
+{% extends "courses/layout.html" %}
+
+{% block title %}{{ form.instance.quiz }}{% endblock %}
+
+{% block content %}
+    <h1><a href="{%  url 'courses:detail' object.quiz.course.id %}">
+
+        {{ form.instance.quiz.course }}</a>
+    </h1>
+    <h2><a href="{{ object.quiz.get_absolute_url }}">
+        {{ form.instance.quiz }}</a>
+    </h2>
+    <form method="post" action="">
+        {% csrf_token %}
+
+        <p>
+            {{ form.order.errors }}
+            {{ form.order.label_tag }}
+            {{ form.order }}
+        </p>
+
+        <p>
+            {{ form.prompt.errors }}
+            {{ form.prompt.label_tag }}
+            {{ form.prompt }}
+        </p>
+
+        <!-- to make Material CSS happy -->
+        <p>
+            {{ form.suffle_answers.errors }}
+
+            <label for="id_shuffle_answers">
+            <input type="checkbox"  name="{{ form.shuffle_answers.name }}" id="id_shuffle_answers"
+            {% if form.shuffle_answers.value %}checked{% endif %}/>
+            <span>{{ form.shuffle_answers.label }}</span>
+            </label>
+        </p>
+
+        <input type="submit" class="waves-effect waves-light btn" value="Save">
+    </form>
+
+{% endblock content %}
