@@ -24,10 +24,10 @@
     <a href="{% url 'courses:edit_quiz' course_pk=object.course_id quiz_pk=object.id %}"
         class="waves-effect waves-light btn">
         <i class="material-icons left">edit</i>Edit</a>
-    <a href="{% url 'courses:create_mc_question' quiz_pk=object.pk %}"
+    <a href="{% url 'courses:create_question' quiz_pk=object.pk question_type='mc' %}"
         class="waves-effect waves-light btn">
         <i class="material-icons left">question_answer</i>New Multiple Choice Question</a>
-    <a href="{% url 'courses:create_tf_question' quiz_pk=object.pk %}"
+    <a href="{% url 'courses:create_question' quiz_pk=object.pk question_type='tf' %}"
         class="waves-effect waves-light btn">
         <i class="material-icons left">thumbs_up_down</i>New True/False Question</a>
 {% endblock step %}

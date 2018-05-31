@@ -101,9 +101,9 @@ Models
     - Course
         - Text(Step)
         - Quiz(Step)
-        - Question
-            - MultipleChoiceQuestion
-            - TrueFalseQuestion
+            - Question
+                = MultipleChoiceQuestion
+                = TrueFalseQuestion
             - Answer
 
 
@@ -145,3 +145,8 @@ v0.20
 
     * customize a form html output in question_edit.html to enable Material CSS checkbox
     * add create view and edit view for multiple-choice and true-false questions
+
+v0.21
+
+    * unify create multiple-choice question view and create true-false question view into one
+    * use Formsets for Answer

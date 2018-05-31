@@ -1,7 +1,7 @@
 from itertools import chain
 
 from django.views.generic import (
-    ListView, DetailView, CreateView, UpdateView,
+    ListView, DetailView, CreateView, UpdateView, FormView,
 )
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
@@ -114,6 +114,14 @@ class QuestionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
     pk_url_kwarg = "quiz_pk"
     success_message = "%(prompt)s was created successfully"
+    template_name = "courses/question_form.html"
+
+    def get_form_class(self):
+        if self.kwargs.get("question_type") == "mc":
+            self.form_class = forms.MultipleChoiceQuestionForm
+        elif self.kwargs.get("question_type") == "tf":
+            self.form_class = forms.TrueFalseQuestionForm
+        return self.form_class
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -126,16 +134,6 @@ class QuestionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         quiz_pk = self.kwargs.get(self.pk_url_kwarg)
         form.instance.quiz = get_object_or_404(models.Quiz, pk=quiz_pk)
         return super().form_valid(form)
-
-
-class MCQuestionCreateView(QuestionCreateView):
-    form_class = forms.MultipleChoiceQuestionForm
-    template_name = "courses/question_form.html"
-
-
-class TFQuestionCreateView(QuestionCreateView):
-    form_class = forms.TrueFalseQuestionForm
-    template_name = "courses/question_form.html"
 
 
 class QuestionEditView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -155,4 +153,5 @@ class MCQuestionEditView(QuestionEditView):
 class TFQuestionEditView(QuestionEditView):
     model = models.TrueFalseQuestion
     form_class = forms.TrueFalseQuestionForm
+
 
