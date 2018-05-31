@@ -13,8 +13,13 @@ urlpatterns = [
     path("<int:course_pk>/edit_text/<int:text_pk>/", views.TextEditView.as_view(), name="edit_text"),
     re_path(r"(?P<quiz_pk>\d+)/create_question/(?P<question_type>mc|tf)/$",
             views.QuestionCreateView.as_view(), name="create_question"),
+
+    # not neat but to show we can use url patterns to direct views
     path("<int:quiz_pk>/edit_mc_question/<int:question_pk>/",
          views.MCQuestionEditView.as_view(), name="edit_mc_question"),
     path("<int:quiz_pk>/edit_tf_question/<int:question_pk>/",
          views.TFQuestionEditView.as_view(), name="edit_tf_question"),
+
+    path("<int:question_pk>/edit_answer/", views.AnswerEditView.as_view(), name="edit_answer"),
+    path("question/<int:question_pk>/", views.AnswerListView.as_view(), name="list_answer"),
 ]

@@ -8,11 +8,10 @@
     {{ object.description|linebreaks }}
         {{ object.content|linebreaks }}
 
-    {% block question %}
-    {% endblock %}
-    {% if user.is_authenticated %}
-        <hr>
-        {% block step %}{% endblock %}
-    {% endif %}
+    {% block question %}{% endblock %}
+
+    <hr>
+
+    {% block step %}{% endblock %}
 
 {% endblock %}

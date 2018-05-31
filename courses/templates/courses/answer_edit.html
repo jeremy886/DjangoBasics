@@ -1,0 +1,14 @@
+{% extends "courses/layout.html" %}
+
+
+{% block title %}Answer Form{% endblock %}
+
+{% block content %}
+    <h4>{{ question.prompt }}</h4>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="waves-effect waves-light btn" value="Save">
+    </form>
+
+{% endblock content %}

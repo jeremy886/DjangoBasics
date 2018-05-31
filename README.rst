@@ -142,11 +142,19 @@ v0.19
     * create two paths in urls.py for two Question types to use CreateView more easily
 
 v0.20
+=====
 
     * customize a form html output in question_edit.html to enable Material CSS checkbox
     * add create view and edit view for multiple-choice and true-false questions
 
 v0.21
+=====
 
     * unify create multiple-choice question view and create true-false question view into one
     * use Formsets for Answer
+
+v0.22
+=====
+
+    * give several templates better names
+    * add answer edit and list views

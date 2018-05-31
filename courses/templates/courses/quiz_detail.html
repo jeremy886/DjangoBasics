@@ -7,13 +7,18 @@
     {% for question in object.question_set.all %}
         <li>
         {% if question.multiplechoicequestion %}
-            <a href="{% url 'courses:edit_mc_question' quiz_pk=object.pk question_pk=question.pk%}">
+            <a href="{% url 'courses:list_answer' question_pk=question.pk %}">
                 {{ question }}
             </a>
         {% elif question.truefalsequestion %}
-            <a href="{% url 'courses:edit_tf_question' quiz_pk=object.pk question_pk=question.pk%}">
+            <a href="{% url 'courses:list_answer' question_pk=question.pk %}">
                 {{ question }}
             </a>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <a href="{% url 'courses:edit_answer' question_pk=question.pk %}"
+            class="waves-effect waves-light btn-small lighten-5">
+            <i class="material-icons">edit</i></a>
         {% endif %}
         </li>
     {% endfor %}
@@ -21,13 +26,12 @@
 {% endblock question %}
 
 {% block step %}
-    <a href="{% url 'courses:edit_quiz' course_pk=object.course_id quiz_pk=object.id %}"
-        class="waves-effect waves-light black btn">
-        <i class="material-icons left">edit</i>Edit This Quiz</a>
+{% if user.is_authenticated %}
     <a href="{% url 'courses:create_question' quiz_pk=object.pk question_type='mc' %}"
         class="waves-effect waves-light btn">
         <i class="material-icons left">question_answer</i>New Multiple Choice Question</a>
     <a href="{% url 'courses:create_question' quiz_pk=object.pk question_type='tf' %}"
         class="waves-effect waves-light btn">
         <i class="material-icons left">thumbs_up_down</i>New True/False Question</a>
+{% endif %}
 {% endblock step %}

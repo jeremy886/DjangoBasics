@@ -1,0 +1,17 @@
+{% extends "courses/layout.html" %}
+
+
+{% block title %}Answers{% endblock %}
+
+{% block content %}
+
+  <ul class="collection with-header">
+    <li class="collection-header"><h4>{{ question.prompt }}</h4></li>
+    {% for answer in object_list %}
+      <li class="collection-item">{{ answer }}</li>
+    {% empty %}
+      <li>No answer available yet!</li>
+    {% endfor %}
+  </ul>
+
+{% endblock content %}
